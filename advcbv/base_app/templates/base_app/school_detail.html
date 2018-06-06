@@ -1,0 +1,20 @@
+{% extends "base_app/base_app_base.html" %}
+
+{% block body_block %}
+ <div class="jumbotron">
+  <h1>Добро пожаловать на страницу детальной информации о школе!</h1>
+  <h2>Информация о школе</h2>
+  <p>Название школы: {{school_detail.name}}</p>
+  <p>Директор школы: {{school_detail.principal}}</p>
+  <p>Местоположение школы: {{school_detail.location}}</p>
+  <h3>Учащиеся: </h3>
+  {% for student in school_detail.students.all %}
+    <p> {{student.name}}, которому {{student.age}} лет.</p>
+  {% endfor %}
+
+ <div class="container">
+   <p><a class="btn btn-primary"href="{% url 'base_app:update' pk=school_detail.pk %}">Обновить</a></p>
+   <p><a class="btn btn-primary" href="{% url 'base_app:delete' pk=school_detail.pk %}">Удалить</a></p>
+ </div>
+ </div>
+{% endblock %}

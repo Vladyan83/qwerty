@@ -1,0 +1,23 @@
+{% extends 'base_app/base_app_base.html' %}
+{% block body_block %}
+
+<div class="jumbotron">
+  <h1>
+    {% if not form.instance.pk %}
+    Создание новой школы
+    {% else %}
+    Обновить информацию о школе
+    {% endif %}
+  </h1>
+
+  <form method='POST'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" class="btn btn-primary mr-sm 2 " value="Отправить">
+    <a class="btn btn-primary" href="{% url 'base_app:list' %}">Назад</a>
+  </form>
+
+</div>
+
+
+{% endblock %}
